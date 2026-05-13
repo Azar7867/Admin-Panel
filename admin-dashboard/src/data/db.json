@@ -1,0 +1,54 @@
+{
+  "orders": [
+    {
+      "id": "#9821",
+      "customer": "Aria Chen",
+      "email": "aria@acme.co",
+      "product": "Pro Plan",
+      "amount": "$299",
+      "status": "Completed",
+      "avatar": "AC",
+      "color": "bg-violet-100 text-violet-700"
+    },
+    {
+      "id": "#9820",
+      "customer": "Marcus Reid",
+      "email": "m.reid@corp.io",
+      "product": "Enterprise",
+      "amount": "$899",
+      "status": "Pending",
+      "avatar": "MR",
+      "color": "bg-blue-100 text-blue-700"
+    },
+    {
+      "id": "#9819",
+      "customer": "Sophia Turner",
+      "email": "sophia@startup.io",
+      "product": "Starter Plan",
+      "amount": "$99",
+      "status": "Completed",
+      "avatar": "ST",
+      "color": "bg-emerald-100 text-emerald-700"
+    },
+    {
+      "id": "#9818",
+      "customer": "Daniel Kim",
+      "email": "daniel.kim@mail.com",
+      "product": "Pro Plan",
+      "amount": "$299",
+      "status": "Refunded",
+      "avatar": "DK",
+      "color": "bg-rose-100 text-rose-700"
+    },
+    {
+      "id": "#9817",
+      "customer": "Liam Johnson",
+      "email": "liam@corp.com",
+      "product": "Enterprise",
+      "amount": "$899",
+      "status": "Pending",
+      "avatar": "LJ",
+      "color": "bg-amber-100 text-amber-700"
+    }
+  ]
+}

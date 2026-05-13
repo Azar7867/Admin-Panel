@@ -1,0 +1,35 @@
+const jwt = require("jsonwebtoken");
+
+module.exports = (req, res, next) => {
+  try {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) {
+      return res.status(401).json({
+        message: "No token provided",
+      });
+    }
+
+    const token = authHeader.split(" ")[1];
+
+    if (!token) {
+      return res.status(401).json({
+        message: "Invalid token format",
+      });
+    }
+
+    const decoded = jwt.verify(token, "secret123");
+
+    // console.log("DECODED USER:", decoded);
+
+    req.user = decoded;
+
+    next();
+  } catch (err) {
+    console.log(err);
+
+    return res.status(401).json({
+      message: "Token invalid",
+    });
+  }
+};
