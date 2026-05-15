@@ -9,7 +9,10 @@ const scheduleRoutes = require("./routes/scheduleRoutes");
 const blogRoutes = require("./routes/blogRoutes");
 const invoiceRoutes = require("./routes/invoiceRoutes");
 const leadRoutes = require("./routes/leadRoutes");
+const graphRoutes = require("./routes/graphRoutes");
+const loginRoutes = require("./routes/loginRoutes");
 dotenv.config();
+
 
 connectDB();
 
@@ -27,6 +30,8 @@ app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/employees", require("./routes/employeeRoutes"));
 app.use("/api/invoices", invoiceRoutes);
 app.use("/api/leads", leadRoutes);
+app.use("/api/graph", graphRoutes);
+app.use("/api/login-hours", loginRoutes);
 app.get("/", (req, res) => {
   res.send("API Running...");
 });

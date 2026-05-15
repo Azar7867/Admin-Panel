@@ -20,6 +20,7 @@ import AdminDashboard from "../pages/AdminDashboard";
 import ProtectedRoute from "./ProtectedRoute";
 import PremiumInvoicePreview from "../pages/Invoice";
 import InvoiceList from "../pages/InvoiceList";
+import VisualData from "../pages/VisualData";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -67,6 +68,7 @@ const AppRoutes = () => {
         <Route path="subscribers" element={<SubscriberPage />} />
         <Route path="invoice" element={<PremiumInvoicePreview />} />
         <Route path="invoiceList" element={<InvoiceList />} />
+        <Route path="visual" element={<VisualData />} />
       </Route>
       <Route path="*" element={<Navigate to="/login" />} />
 

@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import axios from "axios";
+import { BASE_URL } from "../api/api";
 import {
   FaBell,
   FaSearch,
@@ -93,54 +95,104 @@ const Navbar = ({ onMenuClick }) => {
 
     return () => clearInterval(interval);
   }, [isRunning]);
+  useEffect(() => {
 
-  const handleCheckIn = () => {
-    const now = new Date();
+  const checkActiveSession = async () => {
+    try {
 
-    const session = {
-      id: Date.now(),
-      start: now,
-      end: null,
-      duration: 0,
-      status: "Active",
-    };
+      const response = await axios.get(
+        `${BASE_URL}/login-hours`
+      );
 
-    const existing = JSON.parse(localStorage.getItem("loginHours")) || [];
+      const activeSession = response.data.find(
+        (item) => item.status === "Active"
+      );
 
-    localStorage.setItem("loginHours", JSON.stringify([...existing, session]));
+      if (activeSession) {
 
-    setStartTime(now);
+        setIsRunning(true);
+
+        setStartTime(
+          new Date(activeSession.start)
+        );
+
+        const elapsedSeconds = Math.floor(
+          (new Date() -
+            new Date(activeSession.start)) /
+            1000
+        );
+
+        setSeconds(elapsedSeconds);
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  checkActiveSession();
+
+}, []);
+
+  const handleCheckIn = async () => {
+  try {
+
+    const response = await axios.post(
+      `${BASE_URL}/login-hours/checkin`
+    );
+
+    console.log(response.data);
+
+    setStartTime(new Date());
+
     setIsRunning(true);
 
-    window.dispatchEvent(new Event("loginHoursUpdated"));
-  };
+    // UPDATE LOGIN HOURS PAGE
+    window.dispatchEvent(
+      new Event("loginHoursUpdated")
+    );
+
+  } catch (error) {
+
+    console.log(error);
+
+    if (error.response) {
+      console.log(error.response.data);
+    }
+  }
+};
   const handlePause = () => {
     setIsRunning(false);
   };
-  const handleCheckOut = () => {
-    const endTime = new Date();
+  const handleCheckOut = async () => {
+  try {
 
-    let existing = JSON.parse(localStorage.getItem("loginHours")) || [];
+    const response = await axios.put(
+      `${BASE_URL}/login-hours/checkout`
+    );
 
-    const index = existing.findIndex((item) => item.status === "Active");
-
-    if (index !== -1) {
-      existing[index] = {
-        ...existing[index],
-        end: endTime,
-        duration: seconds,
-        status: "Clocked Out",
-      };
-    }
-
-    localStorage.setItem("loginHours", JSON.stringify(existing));
-
-    window.dispatchEvent(new Event("loginHoursUpdated"));
+    console.log(response.data);
 
     setIsRunning(false);
+
     setSeconds(0);
+
     setStartTime(null);
-  };
+
+    // UPDATE LOGIN HOURS PAGE
+    window.dispatchEvent(
+      new Event("loginHoursUpdated")
+    );
+
+  } catch (error) {
+
+    console.log(error);
+
+    if (error.response) {
+      console.log(error.response.data);
+    }
+  }
+};
   const formatTime = (sec) => {
     const h = String(Math.floor(sec / 3600)).padStart(2, "0");
     const m = String(Math.floor((sec % 3600) / 60)).padStart(2, "0");

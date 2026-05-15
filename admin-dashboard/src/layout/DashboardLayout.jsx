@@ -44,24 +44,31 @@ const DashboardLayout = ({ children }) => {
     <div className="flex h-screen bg-gray-50 overflow-hidden">
       <div
         className={`
-          fixed inset-0 z-30 md:hidden
-          bg-black/50 backdrop-blur-sm
-          transition-opacity duration-300 ease-in-out
-          ${mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
-        `}
+    fixed inset-0 z-[998] md:hidden
+    bg-black/50 backdrop-blur-sm
+    transition-opacity duration-300 ease-in-out
+    ${
+      mobileOpen
+        ? "opacity-100 pointer-events-auto"
+        : "opacity-0 pointer-events-none"
+    }
+  `}
         onClick={closeMobileDrawer}
       />
 
       <div
         className={`
-          h-full shrink-0
-          transition-transform duration-300 ease-in-out
-          ${
-            isMobile
-              ? `fixed z-40 ${mobileOpen ? "translate-x-0" : "-translate-x-full"}`
-              : "relative translate-x-0"
-          }
-        `}
+    fixed top-0 left-0 h-screen z-[999]
+    transition-transform duration-300 ease-in-out
+    ${isMobile ? "w-72" : ""}
+    ${
+      isMobile
+        ? mobileOpen
+          ? "translate-x-0"
+          : "-translate-x-full"
+        : "translate-x-0 relative"
+    }
+  `}
       >
         <Sidebar
           collapsed={collapsed}

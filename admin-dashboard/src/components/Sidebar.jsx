@@ -86,6 +86,12 @@ const allMenus = [
     iconBg: "bg-green-100 text-green-600",
   },
   {
+  name: "Visual Data",
+  path: "/visual",
+  icon: <FaChartBar />,
+  iconBg: "bg-blue-100 text-blue-600",
+},
+  {
     name: "Blog",
     path: "/blog",
     icon: <FaBlog />,
