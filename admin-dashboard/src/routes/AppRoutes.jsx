@@ -21,6 +21,8 @@ import ProtectedRoute from "./ProtectedRoute";
 import PremiumInvoicePreview from "../pages/Invoice";
 import InvoiceList from "../pages/InvoiceList";
 import VisualData from "../pages/VisualData";
+import UserPdfPage from "../pages/UserPdfPage";
+import UploadPdfPage from "../pages/UploadPdfPage";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -69,6 +71,14 @@ const AppRoutes = () => {
         <Route path="invoice" element={<PremiumInvoicePreview />} />
         <Route path="invoiceList" element={<InvoiceList />} />
         <Route path="visual" element={<VisualData />} />
+        <Route
+  path="my-pdfs"
+  element={<UserPdfPage />}
+/>
+<Route
+  path="upload-pdf"
+  element={<UploadPdfPage />}
+/>
       </Route>
       <Route path="*" element={<Navigate to="/login" />} />
 

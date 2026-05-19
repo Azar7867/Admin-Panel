@@ -16,7 +16,7 @@ module.exports = (req, res, next) => {
       return res.status(401).json({
         message: "Invalid token format",
       });
-    }
+    } 
 
     const decoded = jwt.verify(token, "secret123");
 

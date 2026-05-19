@@ -21,6 +21,8 @@ import {
   FaUserShield,
   FaUser,
   FaFileInvoiceDollar,
+  FaFilePdf,
+  FaFileUpload,
 } from "react-icons/fa";
 import { HiOutlineDocumentText } from "react-icons/hi";
 
@@ -90,6 +92,18 @@ const allMenus = [
   path: "/visual",
   icon: <FaChartBar />,
   iconBg: "bg-blue-100 text-blue-600",
+},
+{
+  name: "Upload PDF",
+  path: "/upload-pdf",
+  icon: <FaFileUpload />,
+  iconBg: "bg-red-100 text-red-600",
+},
+{
+  name: "My PDFs",
+  path: "/my-pdfs",
+  icon: <FaFilePdf />,
+  iconBg: "bg-red-100 text-red-600",
 },
   {
     name: "Blog",

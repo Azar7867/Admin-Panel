@@ -11,6 +11,7 @@ const invoiceRoutes = require("./routes/invoiceRoutes");
 const leadRoutes = require("./routes/leadRoutes");
 const graphRoutes = require("./routes/graphRoutes");
 const loginRoutes = require("./routes/loginRoutes");
+const pdfRoutes = require("./routes/pdfRoutes");
 dotenv.config();
 
 
@@ -32,6 +33,7 @@ app.use("/api/invoices", invoiceRoutes);
 app.use("/api/leads", leadRoutes);
 app.use("/api/graph", graphRoutes);
 app.use("/api/login-hours", loginRoutes);
+app.use("/api/pdf", pdfRoutes);
 app.get("/", (req, res) => {
   res.send("API Running...");
 });
